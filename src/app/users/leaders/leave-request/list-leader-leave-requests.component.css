@@ -1,0 +1,77 @@
+thead > tr > th {
+  text-align: center;
+}
+
+tbody tr td {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+td a.fa.fa-edit,
+td a.fa.fa-check-circle,
+td a.fa.fa-bank{
+  font-size: 18px;
+  vertical-align: middle;
+  margin-bottom: 1px;
+}
+
+td a.fa.fa-bank{
+  font-size: 16px;
+}
+
+td a.fa.fa-check-circle,
+td a.fa.fa-bank{
+  margin-bottom: 2px;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #D9EDF7;
+}
+
+.review-tag {
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 4px;
+}
+
+.review-tag.review-passed-tag {
+  background: #00A65A;
+}
+
+.review-tag.review-nopass-tag {
+  background: #F39C12;
+}
+
+.text-wrap{
+  text-overflow: ellipsis; /* for IE */
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100px;
+  -moz-text-overflow: ellipsis; /* for Firefox,mozilla */
+}
+
+
+.form-group > label {
+  font-size: 15px;
+}
+
+.form-group .form-control-static {
+  font-size: 15px;
+}
+
+.form-group .form-control{
+  font-size: 15px;
+  border-radius: 6px;
+}
+
+.glyphicon.glyphicon-ok,
+.fa.fa-arrow-right,
+.fa.fa-arrow-down{
+  color: #00a65a;
+}
+
+.no-new-line {
+  word-break: keep-all;
+}

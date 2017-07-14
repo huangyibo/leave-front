@@ -1,0 +1,6 @@
+.wrapper{
+  min-height: 100%;
+
+  /* 等于footer的高度 */
+  margin-bottom: -60px;
+}

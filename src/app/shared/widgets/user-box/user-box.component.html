@@ -1,0 +1,37 @@
+<!-- Menu Toggle Button -->
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <!-- The user image in the navbar-->
+  <img [src]="currentUser.header_img" class="user-image" [alt]="currentUser.real_name">
+  <!-- hidden-xs hides the username on small devices so only the image appears. -->
+  <span class="hidden-xs">{{currentUser.real_name}}</span>
+</a>
+<ul class="dropdown-menu">
+  <!-- The user image in the menu -->
+  <li class="user-header">
+    <img [src]="currentUser.header_img" class="img-circle" [alt]="currentUser.real_name">
+    <p>
+      {{currentUser.real_name}} - {{currentUser.department_name}}
+      <small *ngIf="currentUser.rank && currentUser.create_time">{{currentUser.rank}} since {{currentUser.create_time}}</small>
+    </p>
+  </li>
+  <!-- Menu Body -->
+  <li class="user-body" *ngIf="currentUser.direct_leader_id && currentUser.direct_leader_name">
+    <div class="col-xs-10 text-center">
+      {{ 'USERBOX.DIRECT_LEADER_TAG' | translate }}--
+      <a href="#">{{currentUser.direct_leader_name}}</a>
+    </div>
+  </li>
+  <!-- Menu Footer-->
+  <li class="user-footer">
+    <div class="pull-left">
+      <a href="#" (click)="userManage()" class="btn btn-default btn-flat">
+        {{ 'USERBOX.PROFILE' | translate}}
+      </a>
+    </div>
+    <div class="pull-right">
+      <a href="#" (click)="logout()" class="btn btn-default btn-flat">
+        {{ 'USERBOX.SIGN_OUT' | translate}}
+      </a>
+    </div>
+  </li>
+</ul>

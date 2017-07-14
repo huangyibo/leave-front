@@ -1,0 +1,9 @@
+.common-header {
+  -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+  box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+.navbar-header > .navbar-brand {
+  font-weight: bolder;
+  color: #3C8DBC;
+}

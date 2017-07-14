@@ -1,0 +1,22 @@
+.auth-page {
+}
+
+.input-group > .input-group-addon > .fa {
+  font-size: 20px;
+  width: 35px;
+}
+.input-group > input {
+  height: 50px;
+}
+
+.input-group > input,
+.form-group > label {
+  font-size: 18px;
+}
+
+
+#auth-sumbit-btn {
+  margin-top: 15px;
+}
+
+

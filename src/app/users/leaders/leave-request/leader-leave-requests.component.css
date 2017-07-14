@@ -1,0 +1,20 @@
+/*@import url('assets/city-picker/css/city-picker.css');*/
+
+.form-group > label {
+  font-size: 16px;
+}
+
+.form-group .form-control-static {
+  font-size: 16px;
+}
+
+.form-group .form-control{
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+.glyphicon.glyphicon-ok,
+.fa.fa-arrow-right,
+.fa.fa-arrow-down{
+  color: #00a65a;
+}

@@ -1,0 +1,43 @@
+<nav class="navbar navbar-default common-header">
+  <div class="container">
+    <div class="navbar-header">
+    <!--<a class="navbar-brand" href="#" routerLink="/">
+      <img src="/assets/image/logo/smmu_logo.jpg" style="width: 30px; height: 30px;" alt="SMMU"/>
+    </a>-->
+      <a class="navbar-brand" href="#" routerLink="/">
+        SMMU请假销假系统
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse">
+      <!-- Show this for logged out users -->
+      <ul  class="nav navbar-nav navbar-right" *ngIf="isShowHeaderNav">
+        <li class="">
+          <a class="navbar-link" href="#" routerLink="/">
+            主页
+          </a>
+        </li>
+
+        <li class="">
+          <a class="nav-link active"
+             routerLink="/auth/login"
+             routerLinkActive="active">
+            登录
+          </a>
+        </li>
+        <li class="">
+          <a class="nav-link" href="#"  routerLink="/auth/404">
+            404
+          </a>
+        </li>
+        <li class="">
+          <a class="nav-link" href="#"  routerLink="/auth/500">
+            500
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Show this for logged in users -->
+
+  </div>
+</nav>

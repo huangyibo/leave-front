@@ -1,0 +1,26 @@
+thead > tr > th {
+  text-align: center;
+}
+
+tbody tr td {
+  text-align: center;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #D9EDF7;
+}
+
+.review-tag {
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 4px;
+}
+
+.review-tag.review-passed-tag {
+  background: #00A65A;
+}
+
+.review-tag.review-nopass-tag {
+  background: #F39C12;
+}

@@ -1,0 +1,78 @@
+<layout-header></layout-header>
+<div class="container" style="min-height: 100%; margin-bottom: 60px">
+  <div class="row">
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-xs-offset-3 col-sm-3 col-md-offset-3">
+      <h1 class="text-center">{{ title }}</h1>
+      <p class="text-center">
+        <a [routerLink]="['/auth/login']" *ngIf="authType == 'register'">已经有账号?</a>
+        <a [routerLink]="['/auth/register']" *ngIf="authType == 'login'">注册新账号?</a>
+      </p>
+      <list-errors [errors]="errors"></list-errors>
+
+      <form name="form" (ngSubmit)="f.form.valid && submitForm()" #f="ngForm" novalidate>
+        <fieldset [disabled]="isSubmitting">
+          <!--for login-->
+          <div class="form-group form-group-sm form-group-lg"
+               [ngClass]="{ 'has-error': f.submitted && !user_name.valid }">
+            <label for="user_name">用户名</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                  <i class="fa fa-user"></i>
+                </span>
+              <input type="text" placeholder="用户名"
+                     class="form-control form-control-lg"
+                     name="user_name" id="user_name"
+                     [(ngModel)]="user.user_name" #user_name="ngModel" required autofocus/>
+              <div *ngIf="f.submmited && !username.valid" class="help-block">
+                * 用户名不能为空
+              </div>
+            </div>
+          </div>
+          <!--for register-->
+          <div class="form-group form-group-lg" [ngClass]="{ 'has-error': f.submitted && !email.valid }"
+               *ngIf="!isLoginUrl">
+            <label for="email">Email</label>
+            <div class="input-group  input-group-lg">
+                <span class="input-group-addon">
+                  <i class="fa">@</i>
+                </span>
+              <input type="text" placeholder="Email"
+                     class="form-control form-control-lg "
+                     name="email" id="email"
+                     [(ngModel)]="user.email" #email="ngModel" required/>
+              <div *ngIf="f.submmited && !username.valid" class="help-block">
+                * Email不能为空
+              </div>
+            </div>
+          </div>
+          <!--for login-->
+          <div class="form-group form-group-lg" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+            <label for="password">密码</label>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                  <i class="fa fa-lock"></i>
+                </span>
+              <input type="password" placeholder="密码"
+                     class="form-control form-control-lg"
+                     name="password" id="password"
+                     [(ngModel)]="user.password" #password="ngModel" required/>
+              <div *ngIf="f.submmited && !password.valid" class="help-block">
+                * 密码不能为空
+              </div>
+            </div>
+          </div>
+          <div class="form-group pull-right ">
+            <button type="submit" id="auth-sumbit-btn"
+                    class="btn btn-lg btn-primary pull-right pull-md-right pull-sm-right pull-lg-right"
+                    [disabled]="!f.form.valid">
+              {{ buttonName }}
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+  </div>
+</div>
+<layout-footer></layout-footer>

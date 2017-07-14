@@ -1,0 +1,13 @@
+.form-group > label {
+  font-size: 16px;
+}
+
+.form-group .form-control-static {
+  font-size: 16px;
+}
+
+.form-group .form-control{
+  font-size: 16px;
+  border-radius: 6px;
+}
+

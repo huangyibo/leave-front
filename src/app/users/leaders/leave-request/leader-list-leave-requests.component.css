@@ -1,0 +1,54 @@
+thead > tr > th {
+  text-align: center;
+}
+
+tbody tr td {
+  text-align: center;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+td a {
+  vertical-align: middle;
+  text-align: center;
+  cursor: hand;
+}
+
+td .btn {
+   margin-left: 10px;
+   font-size: 12px;
+ }
+
+td a.fa.fa-edit {
+  font-size: 20px;
+  vertical-align: middle;
+  margin-top: 3px;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: #D9EDF7;
+}
+
+.review-tag {
+  border-radius: 3px;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 4px;
+}
+
+.review-tag.review-passed-tag {
+  background: #00A65A;
+}
+
+.review-tag.review-nopass-tag {
+  background: #F39C12;
+}
+
+.no-new-line {
+  word-break: keep-all;
+}
+
+.form-group .form-control-static,
+.form-group .control-label{
+  font-size: 15px;
+}

@@ -1,0 +1,203 @@
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+
+<div class="container">
+  <div class="row">
+    <div
+      class="col-md-12 col-md-offset-0">
+      <list-errors [errors]="errors"></list-errors>
+
+      <form name="form" (ngSubmit)="f.form.valid && submitLeave()" class="form-horizontal" #f="ngForm" role="form"
+            novalidate>
+        <fieldset [disabled]="isLoading">
+
+          <div class="form-group">
+            <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              姓名&nbsp;&nbsp;
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <p class="form-control-static ">
+                {{ currentUser.real_name }}
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              职务/职称&nbsp;&nbsp;
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <p class="form-control-static ">
+                {{currentUser.major}}
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              所属部门&nbsp;&nbsp;
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <p class="form-control-static ">
+                {{currentUser.department_name}}
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback"
+               [ngClass]="{'has-error': f.submitted && (!start_date.valid || !end_date.valid)}">
+            <label for="inputLeaveDate" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              请假时间*
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div class="row">
+                <div class="col-md-5" style="float: left;width: 47%;height: 45px;">
+                  <input type="date" class="form-control " name="start_date"
+                         [(ngModel)]="leaveRequest.start_date" #start_date="ngModel"
+                         id="inputLeaveDate" placeholder="起始日期 年-月-日"
+                         required/>
+                </div>
+                <div class="text-center" style="float: left;width: 5%;height: 45px;padding-top: 5px;">
+                  <span class="fa fa-arrow-right text-center"></span>
+                </div>
+                <div class="col-md-5" style="width: 47%;height: 40px;line-height: 45px;">
+                  <input type="date" class="form-control " name="end_date" [(ngModel)]="leaveRequest.end_date"
+                         #end_date="ngModel" placeholder="结束日期 年-月-日" required/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback"
+               [ngClass]="{'has-error': f.submitted && (!origin_addr.valid || !middle_addr || !dest_addr)}">
+            <label for="inputAddress" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              地点*
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <input id="inputAddress" class="form-control" type="text"
+                     name="origin_addr" [(ngModel)]="leaveRequest.origin_addr" #origin_addr="ngModel" placeholder="出发地">
+              <div class="raw">
+                <div class="col-md-12 text-center">
+                  <span class="fa  fa-arrow-down text-center"></span>
+                </div>
+              </div>
+              <input class="form-control pull-right" placeholder="经过" type="text" name="middle_addr"
+                     [(ngModel)]="leaveRequest.middle_addr" #middle_addr="ngModel">
+              <div class="raw">
+                <div class="col-md-12 text-center">
+                  <span class="fa  fa-arrow-down text-center"></span>
+                </div>
+              </div>
+              <input class="form-control " placeholder="目的地" type="text" name="dest_addr"
+                     [(ngModel)]="leaveRequest.dest_addr" #dest_addr="ngModel" required>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="{'has-error': f.submitted && !traffic_tool.valid}">
+            <label for="inputTraficTool" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              交通工具*
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <select class="form-control" name="traffic_tool" [(ngModel)]="leaveRequest.traffic_tool"
+                      #traffic_tool="ngModel"
+                      id="inputTraficTool" data-placeholder="请选择交通工具" required>
+                <option value="火车(高铁/动车/普通列车)">火车(高铁/动车/普通列车)</option>
+                <option value="飞机">飞机</option>
+                <option value="长途汽车">长途汽车</option>
+                <option value="公共汽车">公共汽车</option>
+                <option value="地铁">地铁</option>
+                <option value="轮船">轮船</option>
+                <option value="其他">其他</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="{'has-error': f.submitted && !phone.valid}">
+            <label for="inputMobilePhone" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              通讯联系*
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <input type="text" class="form-control" name="phone" [(ngModel)]="leaveRequest.phone" #phone="ngModel"
+                     id="inputMobilePhone" placeholder="请输入手机号"
+                     aria-describedby="inputMobilePhoneStatus" required/>
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span id="inputMobilePhoneStatus" class="sr-only">(success)</span>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="{'has-error': f.submitted && !funds_source.valid}">
+            <label for="inputFundSource" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              经费来源&nbsp;&nbsp;
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <select class="form-control" name="funds_source" [(ngModel)]="leaveRequest.funds_source"
+                      #funds_source="ngModel"
+                      id="inputFundSource" data-placeholder="请选择经费来源" required>
+                <option value="科室资助">科室资助</option>
+                <option value="科研经费">科研经费</option>
+                <option value="自筹经费">自筹经费</option>
+                <option value="其他">其他</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="{'has-error': f.submitted && !teaching.valid}">
+            <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              授课任务*
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <label class="radio-inline" style="font-size: 16px">
+                <input type="radio" name="teaching" [(ngModel)]="leaveRequest.teaching" #teaching="ngModel" value="true"
+                       required/>有
+              </label>
+              <label class="radio-inline" style="font-size: 16px">
+                <input type="radio" name="teaching" [(ngModel)]="leaveRequest.teaching" #teaching="ngModel"
+                       value="false" required/>无
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="{'has-error': f.submitted && !pc.valid}">
+            <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              保密电脑*
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <label class="radio-inline" style="font-size: 16px">
+                <input type="radio" name="pc" [(ngModel)]="leaveRequest.pc" #pc="ngModel" value="true" required/>携带
+              </label>
+              <label class="radio-inline" style="font-size: 16px">
+                <input type="radio" name="pc" [(ngModel)]="leaveRequest.pc" #pc="ngModel" value="false" required/>未携带
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group has-feedback" [ngClass]="{'has-error': f.submitted && !reason.valid}">
+            <label for="inputReason" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+              请假事由*
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <textarea class="form-control" name="reason" rows="3"
+                      [(ngModel)]="leaveRequest.reason" #reason="ngModel"
+                      id="inputReason" placeholder="请输入100字以内的请假事由"
+                      aria-describedby="inputReasonStatus" required>
+            </textarea>
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span id="inputReasonStatus" class="sr-only">(success)</span>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="auth-sumbit-btn" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">
+            </label>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <button type="submit" id="auth-sumbit-btn" class="btn btn-lg btn-primary" [disabled]="isLoading">
+                {{ btnSubmitName }}
+              </button>
+            </div>
+            <!--<button type="reset" id="" class="btn btn-lg btn-default pull-right pull-md-right pull-sm-right pull-lg-right"
+                    [disabled]="">
+              {{ btnResetName }}
+            </button>-->
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
